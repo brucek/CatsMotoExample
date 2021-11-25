@@ -20,7 +20,7 @@ class CatDynamoDBMockTest(unittest.TestCase):
         cat_dynamodb.dynamo_resource.Table.assert_called_once_with("TEST_CATS")
         mock_dynamodb_table.put_item.assert_called_once_with(
             Item={"partitionKey": "cat01", "name": "Molly", "age": 8,
-                  "nicknames": ["Molly-cat", "Missus", "Momma"]}
+                  "nicknames": ["Molly-cat", "Missus", "Momma"]}, ReturnConsumedCapacity='TOTAL'
         )
 
     def test_read_cat_by_name(self):

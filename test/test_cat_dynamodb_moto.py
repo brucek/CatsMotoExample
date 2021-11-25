@@ -14,7 +14,7 @@ class CatDynamoDBMotoTest(unittest.TestCase):
     def test_write_mother_cat(self):
         cat_dynamodb.dynamo_resource = None
         boto3.setup_default_session()
-        client = boto3.client("dynamodb", region_name='eu-west-2')
+        client = boto3.client("dynamodb", region_name='us-west-2')
         client.create_table(
             TableName="TEST_CATS",
             KeySchema=[
@@ -39,7 +39,7 @@ class CatDynamoDBMotoTest(unittest.TestCase):
     def test_read_cat_by_name(self):
         cat_dynamodb.dynamo_resource = None
         boto3.setup_default_session()
-        client = boto3.client("dynamodb", region_name='eu-west-2')
+        client = boto3.client("dynamodb", region_name='us-west-2')
         client.create_table(
             TableName="TEST_CATS",
             KeySchema=[
@@ -63,7 +63,7 @@ class CatDynamoDBMotoTest(unittest.TestCase):
     def test_write_tx(self):
         cat_dynamodb.dynamo_resource = None
         boto3.setup_default_session()
-        client = boto3.client("dynamodb", region_name='eu-west-2')
+        client = boto3.client("dynamodb", region_name='us-west-2')
         client.create_table(
             TableName="TEST_CATS",
             KeySchema=[

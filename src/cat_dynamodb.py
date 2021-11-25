@@ -1,5 +1,7 @@
 import boto3
 from boto3.dynamodb.conditions import Attr
+from moto.dynamodb2.responses import include_consumed_capacity
+
 dynamo_resource = None
 dynamo_client = None
 
@@ -7,7 +9,7 @@ dynamo_client = None
 def init_dynamo():
     global dynamo_resource, dynamo_client
     if dynamo_resource is None:
-        dynamo_resource = boto3.resource("dynamodb", region_name="eu-west-2")
+        dynamo_resource = boto3.resource("dynamodb", region_name="us-west-2")
         dynamo_client = boto3.client("dynamodb")
 
 
@@ -16,7 +18,7 @@ def write_mother_cat():
     record = \
         {"partitionKey": "cat01", "name": "Molly", "age": 8, "nicknames": ["Molly-cat", "Missus", "Momma"]}
     table = dynamo_resource.Table("TEST_CATS")
-    return table.put_item(Item=record)
+    return table.put_item(Item=record, ReturnConsumedCapacity='TOTAL')
 
 
 def read_cat_by_name():
